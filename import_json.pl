@@ -51,9 +51,9 @@ FILE: foreach my $file (@files)
                 # ----- augment with context -----
                 my $testrun  = 0+basename($file, ".json");
                 my $testplan = 0+basename(dirname($file));
+                print STDERR "Duplicate testrun: $testrun\n" if defined $testruns{$testrun}; # twice?
                 push @{$testruns{$testrun}},   $file;
                 push @{$testplans{$testplan}}, $testrun;
-                print STDERR "Duplicate testrun: $testrun\n" if defined $testruns{$testrun}; # twice?
 
                 # ----- decode -----
                 foreach my $chunk (@{$data->{BenchmarkAnythingData}})
