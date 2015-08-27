@@ -1,0 +1,271 @@
+* create perlformance db - MySQL
+** mysql -u root
+** create database if not exists perlformance;
+** create user 'perlformance'@'localhost' identified by 'EXAMPLESECRET';
+** grant usage on *.* to 'perlformance'@'localhost' identified by 'EXAMPLESECRET';
+** grant all privileges on perlformance.* to 'perlformance'@'localhost';
+** flush privileges;
+** quit;
+** # DONE. Connect to it via:
+** mysql -u perlformance -pEXAMPLESECRET perlformance
+* environment vars
+** export BENCHMARKANYTHING_CONFIGFILE=$HOME/.perlformance/config
+* SQL queries
+** DONE get first benchmark points
+   CLOSED: [2015-08-21 Fri 17:02]
+   SELECT 
+     bv.bench_value_id,
+     b.bench,
+     bv.bench_value
+   FROM
+     benchs b
+   JOIN
+     bench_values bv
+     ON
+       b.bench_id = bv.bench_id
+   WHERE
+     bv.bench_value_id < 100
+   LIMIT 10
+   ;
+** DONE get any random benchmark points
+   CLOSED: [2015-08-21 Fri 17:02]
+   SELECT 
+     bv.bench_value_id,
+     b.bench,
+     bv.bench_value
+   FROM
+     benchs b
+   JOIN
+     bench_values bv
+     ON
+       b.bench_id = bv.bench_id
+   LIMIT 10
+   ;
+** DONE all additional fields of a data point
+   CLOSED: [2015-08-21 Fri 17:02]
+   SELECT 
+     bv.bench_value_id,
+     b.bench,
+     bv.bench_value,
+     bat.bench_additional_type
+   FROM
+     benchs b
+   JOIN
+     bench_values bv
+     ON
+       b.bench_id = bv.bench_id
+   JOIN
+     bench_additional_type_relations batr 
+     ON
+       bv.bench_id = batr.bench_id
+   JOIN
+     bench_additional_types bat
+     ON
+       bat.bench_additional_type_id = batr.bench_additional_type_id
+   WHERE
+     bv.bench_value_id = 5246
+   ORDER BY
+     bat.bench_additional_type
+   ;
+** DONE just additional fields of a data point
+   CLOSED: [2015-08-21 Fri 17:04]
+   SELECT 
+     bat.bench_additional_type
+   FROM
+     benchs b
+   JOIN
+     bench_values bv
+     ON
+       bv.bench_id = b.bench_id
+   JOIN
+     bench_additional_type_relations batr 
+     ON
+       batr.bench_id = bv.bench_id
+   JOIN
+     bench_additional_types bat
+     ON
+       bat.bench_additional_type_id = batr.bench_additional_type_id
+   WHERE
+     bv.bench_value_id = 5246
+   ORDER BY
+     bat.bench_additional_type
+   ;
+** DONE just additional_types + additional_value_ids of a data point
+   CLOSED: [2015-08-21 Fri 17:04]
+   SELECT 
+     bv.bench_value_id,
+     bat.bench_additional_type_id
+   FROM
+     benchs b
+   JOIN
+     bench_values bv
+     ON
+       b.bench_id = bv.bench_id
+   JOIN
+     bench_additional_type_relations batr 
+     ON
+       bv.bench_id = batr.bench_id
+   JOIN
+     bench_additional_types bat
+     ON
+       batr.bench_additional_type_id = bat.bench_additional_type_id
+
+   WHERE
+     bv.bench_value_id = 5246
+   ORDER BY
+     bat.bench_additional_type
+   ;
+** DONE full data point
+   CLOSED: [2015-08-21 Fri 17:58]
+   SELECT
+     b.bench,
+     bv.bench_value_id,
+     bv.bench_value,
+     bat.bench_additional_type,
+     bat.bench_additional_type_id,
+     bav.bench_additional_value
+   FROM
+     benchs b
+   JOIN
+     bench_values bv
+     ON
+       b.bench_id = bv.bench_id
+   JOIN
+     bench_additional_type_relations batr
+     ON
+       bv.bench_id = batr.bench_id
+   JOIN
+     bench_additional_types bat
+     ON
+       batr.bench_additional_type_id = bat.bench_additional_type_id
+   JOIN
+     bench_additional_relations bar
+     ON
+       bv.bench_value_id = bar.bench_value_id
+   JOIN 
+     bench_additional_values bav
+     ON
+       bar.bench_additional_value_id = bav.bench_additional_value_id AND
+       bat.bench_additional_type_id  = bav.bench_additional_type_id
+
+   WHERE
+     bv.bench_value_id = 1
+   ORDER BY
+     bat.bench_additional_type
+   ;
+** DONE just additional_types + additional_value_ids of a data point
+   CLOSED: [2015-08-21 Fri 17:58]
+   SELECT
+     bat.bench_additional_type,
+     bav.bench_additional_value
+   FROM
+     benchs b
+   JOIN
+     bench_values bv
+     ON
+       b.bench_id = bv.bench_id
+   JOIN
+     bench_additional_type_relations batr
+     ON
+       bv.bench_id = batr.bench_id
+   JOIN
+     bench_additional_types bat
+     ON
+       batr.bench_additional_type_id = bat.bench_additional_type_id
+   JOIN
+     bench_additional_relations bar
+     ON
+       bv.bench_value_id = bar.bench_value_id
+   JOIN 
+     bench_additional_values bav
+     ON
+       bar.bench_additional_value_id = bav.bench_additional_value_id AND
+       bat.bench_additional_type_id  = bav.bench_additional_type_id
+   WHERE
+     bv.bench_value_id = 1
+   ORDER BY
+     bat.bench_additional_type
+   ;
+** DONE whole single data point
+   CLOSED: [2015-08-24 Mon 13:59]
+   SELECT
+     b.bench,
+     bv.bench_value,
+     bat.bench_additional_type,
+     bav.bench_additional_value
+   FROM
+     benchs b
+   JOIN
+     bench_values bv
+     ON
+       b.bench_id = bv.bench_id
+   JOIN
+     bench_additional_type_relations batr
+     ON
+       bv.bench_id = batr.bench_id
+   JOIN
+     bench_additional_types bat
+     ON
+       batr.bench_additional_type_id = bat.bench_additional_type_id
+   JOIN
+     bench_additional_relations bar
+     ON
+       bv.bench_value_id = bar.bench_value_id
+   JOIN 
+     bench_additional_values bav
+     ON
+       bar.bench_additional_value_id = bav.bench_additional_value_id AND
+       bat.bench_additional_type_id  = bav.bench_additional_type_id
+   WHERE
+     bv.bench_value_id = 1
+   ORDER BY
+     bat.bench_additional_type
+   ;
+
+** DONE essentials (NAME,VALUE)
+   CLOSED: [2015-08-24 Mon 13:59]
+   SELECT
+     b.bench,
+     bv.bench_value
+   FROM
+     benchs b
+   JOIN
+     bench_values bv
+     ON
+       b.bench_id = bv.bench_id
+   WHERE
+     bv.bench_value_id = 1
+   ;
+
+** DONE essentials (NAME,VALUE,UNIT)
+   CLOSED: [2015-08-24 Mon 13:59]
+   SELECT
+     b.bench,
+     bv.bench_value,
+     bu.bench_unit
+   FROM
+     benchs b
+   JOIN
+     bench_values bv
+     ON
+       b.bench_id = bv.bench_id
+   LEFT JOIN
+     bench_units bu
+     ON
+       b.bench_unit_id = bu.bench_unit_id
+   WHERE
+     bv.bench_value_id = 2
+   ;
+
+* query via HTTP
+** curl -s http://localhost:3000/api/v1/search/222
+** curl -s http://localhost:3000/api/v1/search/222 | dpath //NAME
+** curl -s http://localhost:3000/api/v1/listnames
+** curl -s http://localhost:3000/api/v1/listnames                | dpath /
+** curl -s http://localhost:3000/api/v1/listnames/%Shootout%     | dpath /
+** curl -s http://localhost:3000/api/v1/listnames/%25Shootout%25 | dpath /
+** curl -s -H "Content-Type: application/json" -X POST -d '{ "select" : [ "NAME", "VALUE" ], "where" : [ ["=" , "NAME"    , "perlformance.perl5.Shootout.binarytrees" ] ], "order_by" : [ "VALUE_ID" ] }' http://localhost:3000/api/v1/search
+** curl -s -H "Content-Type: application/json" -X POST -d '{ "select" : [ "NAME", "VALUE" ], "where" : [ ["=" , "NAME"    , "perlformance.perl5.Shootout.binarytrees" ] ], "order_by" : [ "VALUE_ID" ] }' http://localhost:3000/api/v1/search | dpath //VALUE
+** curl -s -H "Content-Type: application/json" -X POST -d "$(cat t/query-benchmark-anything-01.json)" http://localhost:3000/api/v1/search
+** curl -s -H "Content-Type: application/json" -X POST -d "$(cat t/query-benchmark-anything-01.json)" http://localhost:3000/api/v1/search | dpath //VALUE
+** curl -s -H "Content-Type: application/json" -X POST -d       @t/query-benchmark-anything-01.json   http://localhost:3000/api/v1/search | dpath //VALUE
