@@ -11,7 +11,7 @@ use File::HomeDir;
 use File::Basename "basename", "dirname";
 use File::Temp "tempfile";
 
-print "BENCHMARKANYTHING_CONFIGFILE = $ENV{BENCHMARKANYTHING_CONFIGFILE}\n";
+print "BENCHMARKANYTHING_CONFIGFILE = @{[ $ENV{BENCHMARKANYTHING_CONFIGFILE} || 'undef' ]}\n";
 print "Searching files...\n";
 
 my $basename;
