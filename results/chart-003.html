@@ -8,29 +8,137 @@
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
-        var data = google.visualization.arrayToDataTable(
-[
+        var data = google.visualization.arrayToDataTable([
    [
       "VERSION",
-      "Shootout.binarytrees"
+      "binarytrees-any",
+      "dpath-any",
+      "fasta-any",
+      "nbody-any",
+      "spectralnorm-any",
+      "threadstorm-any",
+      "viv-any"
+   ],
+   [
+      "5.10.0",
+      null,
+      8.60091805458069,
+      null,
+      null,
+      null,
+      null,
+      null
+   ],
+   [
+      "5.20.0",
+      null,
+      8.43193652629852,
+      null,
+      null,
+      null,
+      74.6119260787964,
+      null
+   ],
+   [
+      "5.14.0",
+      null,
+      8.26448516249657,
+      null,
+      null,
+      null,
+      70.1980772733688,
+      477.247054129839
+   ],
+   [
+      "5.16.0",
+      null,
+      8.95605111718178,
+      null,
+      null,
+      null,
+      72.8296451091767,
+      485.549746477604
    ],
    [
       "5.10.1",
-      100.78440669179
+      100.78440669179,
+      8.53421113491058,
+      264.787985700369,
+      31.4645610868931,
+      25.3743608653545,
+      71.1527929067612,
+      null
+   ],
+   [
+      "5.18.4",
+      null,
+      8.20463261008263,
+      null,
+      null,
+      null,
+      72.7815963029861,
+      null
+   ],
+   [
+      "5.16.3",
+      null,
+      9.07490941286087,
+      null,
+      null,
+      null,
+      73.4274505019188,
+      482.285384571552
+   ],
+   [
+      "5.18.0",
+      null,
+      8.33055008649826,
+      null,
+      null,
+      null,
+      72.5687749743462,
+      null
+   ],
+   [
+      "5.14.4",
+      null,
+      8.17390704751015,
+      null,
+      null,
+      null,
+      70.5698696732521,
+      470.711879241466
+   ],
+   [
+      "5.20.2",
+      null,
+      8.52734715938568,
+      null,
+      null,
+      null,
+      74.5715900301933,
+      null
    ],
    [
       "5.22.0",
-      89.2451974093914
+      89.2451974093914,
+      null,
+      236.755797612667,
+      26.0988519906998,
+      26.7375192701817,
+      73.5248768091202,
+      null
    ]
 ]
-
-        );
-
+);
         var options = {
-            title: 'Perl::Formance - Perl release versions (unit=seconds, smaller=better)',
-            hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-            vAxis: {minValue: 0},
-            isStacked: true
+            title: 'Perl::Formance benchmarks',
+            hAxis: {title: 'perlconfig_version',  titleTextStyle: {color: '#333'}, slantedTextAngle: 45},
+            vAxis: {minValue: 0, title:'seconds (smaller is better)'},
+            pointSize: 4,
+            areaOpacity: 0,
+            interpolateNulls: true,
+            isStacked: false
         };
 
         var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
