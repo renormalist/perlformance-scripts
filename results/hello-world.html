@@ -1,0 +1,152 @@
+<html encoding="utf-8">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      // https://google-developers.appspot.com/chart/interactive/docs/gallery/areachart
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+   [
+      "perlconfig_version",
+      "binarytrees-any",
+      "fasta-any",
+      "nbody-any",
+      "spectralnorm-any",
+      "dpath-any",
+      "viv-any",
+      "threadstorm-any"
+   ],
+   [
+      "5.10.0",
+      null,
+      null,
+      null,
+      null,
+      8.6,
+      null,
+      null
+   ],
+   [
+      "5.10.1",
+      100.81,
+      264.93,
+      31.47,
+      25.38,
+      8.53,
+      null,
+      71.15
+   ],
+   [
+      "5.14.0",
+      null,
+      null,
+      null,
+      null,
+      8.26,
+      477.25,
+      70.2
+   ],
+   [
+      "5.14.4",
+      null,
+      null,
+      null,
+      null,
+      8.17,
+      470.71,
+      70.57
+   ],
+   [
+      "5.16.0",
+      null,
+      null,
+      null,
+      null,
+      8.96,
+      485.55,
+      72.83
+   ],
+   [
+      "5.16.3",
+      null,
+      null,
+      null,
+      null,
+      9.07,
+      482.29,
+      73.43
+   ],
+   [
+      "5.18.0",
+      null,
+      null,
+      null,
+      null,
+      8.33,
+      null,
+      72.57
+   ],
+   [
+      "5.18.4",
+      null,
+      null,
+      null,
+      null,
+      8.2,
+      null,
+      72.78
+   ],
+   [
+      "5.20.0",
+      null,
+      null,
+      null,
+      null,
+      8.43,
+      null,
+      74.61
+   ],
+   [
+      "5.20.2",
+      null,
+      null,
+      null,
+      null,
+      8.53,
+      null,
+      74.57
+   ],
+   [
+      "5.22.0",
+      89.22,
+      236.91,
+      26.1,
+      26.73,
+      null,
+      null,
+      73.52
+   ]
+]
+);
+        var options = {
+            title: 'Perl::Formance - random benchmark selection',
+            hAxis: {title: 'perlconfig_version',  titleTextStyle: {color: '#333'}, slantedTextAngle: 45},
+            vAxis: {minValue: 0, title:'seconds (smaller is better)'},
+            pointSize: 4,
+            areaOpacity: 0,
+            interpolateNulls: true,
+            isStacked: false
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
