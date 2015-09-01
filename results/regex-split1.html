@@ -1,0 +1,92 @@
+<html encoding="utf-8">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      // https://google-developers.appspot.com/chart/interactive/docs/gallery/areachart
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+   [
+      "perlconfig_version",
+      "rx.split1/threads",
+      "rx.split1/nothreads"
+   ],
+   [
+      "5.10.0",
+      9.05,
+      null
+   ],
+   [
+      "5.10.1",
+      9.51,
+      8.42
+   ],
+   [
+      "5.14.0",
+      10.43,
+      8.74
+   ],
+   [
+      "5.14.4",
+      8.63,
+      9.13
+   ],
+   [
+      "5.16.0",
+      9.35,
+      9.57
+   ],
+   [
+      "5.16.3",
+      9.4,
+      8.73
+   ],
+   [
+      "5.18.0",
+      10.12,
+      11.11
+   ],
+   [
+      "5.18.4",
+      10.69,
+      9.26
+   ],
+   [
+      "5.20.0",
+      10.85,
+      10.03
+   ],
+   [
+      "5.20.2",
+      10.84,
+      9.06
+   ],
+   [
+      "5.22.0",
+      9.93,
+      9.82
+   ]
+]
+);
+        var options = {
+            title: 'Perl::Formance - Rx.fieldsplit1 - pathological field splits',
+            hAxis: {title: 'perlconfig_version',  titleTextStyle: {color: '#333'}, slantedTextAngle: 45},
+            vAxis: {minValue: 0, title:'seconds (smaller is better)'},
+            pointSize: 4,
+            areaOpacity: 0,
+            interpolateNulls: true,
+            isStacked: false
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
