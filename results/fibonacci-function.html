@@ -1,0 +1,92 @@
+<html encoding="utf-8">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      // https://google-developers.appspot.com/chart/interactive/docs/gallery/areachart
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+   [
+      "perlconfig_version",
+      "Fib/threads",
+      "Fib/nothreads"
+   ],
+   [
+      "5.10.0",
+      60.72,
+      null
+   ],
+   [
+      "5.10.1",
+      63.13,
+      61.87
+   ],
+   [
+      "5.14.0",
+      57.45,
+      54.81
+   ],
+   [
+      "5.14.4",
+      57.24,
+      54.34
+   ],
+   [
+      "5.16.0",
+      62.08,
+      56.87
+   ],
+   [
+      "5.16.3",
+      59.83,
+      56.43
+   ],
+   [
+      "5.18.0",
+      54.72,
+      52.07
+   ],
+   [
+      "5.18.4",
+      63.63,
+      52.44
+   ],
+   [
+      "5.20.0",
+      64.77,
+      57.2
+   ],
+   [
+      "5.20.2",
+      62.6,
+      58.52
+   ],
+   [
+      "5.22.0",
+      57.57,
+      59.42
+   ]
+]
+);
+        var options = {
+            title: 'Perl::Formance - fibonacci.function - plain function calls',
+            hAxis: {title: 'perlconfig_version',  titleTextStyle: {color: '#333'}, slantedTextAngle: 45},
+            vAxis: {minValue: 0, title:'seconds (smaller is better)'},
+            pointSize: 4,
+            areaOpacity: 0,
+            interpolateNulls: true,
+            isStacked: false
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
