@@ -1,0 +1,92 @@
+<html encoding="utf-8">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      // https://google-developers.appspot.com/chart/interactive/docs/gallery/areachart
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+   [
+      "perlconfig_version",
+      "matrix.times-itself/threads",
+      "matrix.times-itself/nothreads"
+   ],
+   [
+      "5.10.0",
+      33.1,
+      null
+   ],
+   [
+      "5.10.1",
+      30.71,
+      30.22
+   ],
+   [
+      "5.14.0",
+      29.57,
+      31.94
+   ],
+   [
+      "5.14.4",
+      29.19,
+      28.03
+   ],
+   [
+      "5.16.0",
+      29.62,
+      28.63
+   ],
+   [
+      "5.16.3",
+      29.57,
+      28.52
+   ],
+   [
+      "5.18.0",
+      32.3,
+      29.91
+   ],
+   [
+      "5.18.4",
+      33.29,
+      31.76
+   ],
+   [
+      "5.20.0",
+      26.99,
+      26.61
+   ],
+   [
+      "5.20.2",
+      27.02,
+      25.31
+   ],
+   [
+      "5.22.0",
+      17.93,
+      17.3
+   ]
+]
+);
+        var options = {
+            title: 'Perl::Formance - MatrixReal.times_itself - pure perl math / data structures',
+            hAxis: {title: 'perlconfig_version',  titleTextStyle: {color: '#333'}, slantedTextAngle: 45},
+            vAxis: {minValue: 0, title:'seconds (smaller is better)'},
+            pointSize: 4,
+            areaOpacity: 0,
+            interpolateNulls: true,
+            isStacked: false
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
