@@ -11,68 +11,33 @@
         var data = google.visualization.arrayToDataTable([
    [
       "perlconfig_version",
-      "FibOOSig/threads",
-      "FibOOSig/nothreads"
+      "P6STD.viv/threads",
+      "P6STD.viv/nothreads"
    ],
    [
-      "5.20.0",
-      116.35,
-      106.75
+      "5.14.0",
+      488.54,
+      465.96
    ],
    [
-      "5.20.2",
-      112.29,
-      107.85
+      "5.14.4",
+      485.68,
+      455.74
    ],
    [
-      "5.21.0",
-      117.77,
-      105.06
+      "5.16.0",
+      494.17,
+      476.93
    ],
    [
-      "5.21.1",
-      116.71,
-      106.24
-   ],
-   [
-      "5.21.2",
-      123.31,
-      115.2
-   ],
-   [
-      "5.21.3",
-      111.83,
-      109.76
-   ],
-   [
-      "5.21.4",
-      113.79,
-      105.49
-   ],
-   [
-      "5.21.5",
-      119.96,
-      109.43
-   ],
-   [
-      "5.22.0",
-      110.11,
-      102.56
-   ],
-   [
-      "5.23.0",
-      108.66,
-      106.06
-   ],
-   [
-      "5.23.1",
-      110.86,
-      103.77
+      "5.16.3",
+      495.32,
+      469.25
    ]
 ]
 );
         var options = {
-            title: 'Perl::Formance - fibonacci.oosig - method calls using 5.20 signatures',
+            title: 'Perl::Formance - P6STD - parsing Perl6 in Perl5',
             hAxis: {title: 'perlconfig_version',  titleTextStyle: {color: '#333'}, slantedTextAngle: 45},
             vAxis: {minValue: 0, title:'seconds (smaller is better)'},
             pointSize: 4,
