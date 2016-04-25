@@ -15,7 +15,7 @@ print "BENCHMARKANYTHING_CONFIGFILE = @{[ $ENV{BENCHMARKANYTHING_CONFIGFILE} || 
 print "Searching files...\n";
 
 my $basename;
-my @files = map { chomp;$_ } qx(find ~/perlformance/testplan -type f -name "*.json");
+my @files = map { chomp;$_ } qx(find ~/perlformance/testplan/XXX74 -type f -name "*.json");
 
 # Sort by their numerical basename; regardless of their testplan
 # subdir, and potentially different naming number schemes.
